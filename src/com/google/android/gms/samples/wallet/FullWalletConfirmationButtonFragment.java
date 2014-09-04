@@ -374,7 +374,8 @@ public class FullWalletConfirmationButtonFragment extends Fragment implements Co
             resolveUnsuccessfulConnectionResult();
         } else {
             ProductAction productAction = new ProductAction(ProductAction.ACTION_PURCHASE)
-                    .setCheckoutStep(2);
+                    .setCheckoutStep(2)
+                    .setTransactionRevenue(Constants.ITEMS_FOR_SALE[mItemId].totalPrice());
 
             HitBuilders.ScreenViewBuilder builder = new HitBuilders.ScreenViewBuilder()
                     .addProduct(Constants.ITEMS_FOR_SALE[mItemId].toProduct())

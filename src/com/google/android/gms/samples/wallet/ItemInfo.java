@@ -67,12 +67,18 @@ public class ItemInfo {
                 .setName(name)
                 .setCategory("bikes")
                 .setBrand("Google")
-                .setPrice(round(priceMicros/10000, 2, BigDecimal.ROUND_HALF_UP))
+                .setPrice(round(priceMicros/10000, 2, BigDecimal.ROUND_HALF_EVEN))
                 .setQuantity(1);
         return product;
     }
 
-    private static double round(double number, int precision, int roundingMode){
+    public double totalPrice() {
+        return round((taxMicros + shippingPriceMicros + priceMicros)/10000
+                , 2
+                , BigDecimal.ROUND_HALF_EVEN);
+    }
+
+    public static double round(double number, int precision, int roundingMode){
         return new BigDecimal(number).setScale(precision, roundingMode).doubleValue();
     }
 
